@@ -1,0 +1,40 @@
+package design.bridge;
+
+/** 实现层次
+ * @author hason
+ * @since 2023/6/8 14:13
+ */
+public class StringDisplayImpl implements DisplayImpl {
+
+    private String string;
+
+    private int width;
+
+    public StringDisplayImpl(String string) {
+        this.string = string;
+        this.width = string.getBytes().length;
+    }
+
+    @Override
+    public void rawOpen() {
+        printLine();
+    }
+
+    @Override
+    public void rawPrint() {
+        System.out.println("|" + string + "|");
+    }
+
+    @Override
+    public void rawClose() {
+        printLine();
+    }
+
+    private void printLine() {
+        System.out.print("+");
+        for (int i = 0; i < width; i++) {
+            System.out.print("-");
+        }
+        System.out.println("+");
+    }
+}
